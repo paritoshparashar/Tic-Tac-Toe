@@ -1,26 +1,21 @@
+function Gameboard (){
 
-const Gameboard = {
+    let board = [];
 
-   createBoard : () => {
+    const createBoard = function (){
 
-    r1 = Array(3).fill(-1);
-    r2 = Array(3).fill(-1);
-    r3 = Array(3).fill(-1);
+        for (let i = 0; i < 3; i++) {
 
-    return [r1,r2,r3];
-   },
-   
-};
+            board[i] = [];
+            
+            for (let j = 0; j < 3; j++) {
+                
+                board[i].push('N');
 
-const Players = {
-
-    player1 : 'X',
-    player2 : 'O',
-
-};
-
-const Flow = {
-
-    
+            }
+            
+        }
+    };
 
 }
+
