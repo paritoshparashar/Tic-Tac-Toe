@@ -87,6 +87,9 @@ function GamePlay (){
 
         }
 
+        console.log(`Player ${activePlayer.name}'s Turn...`)
+
+
     }
 
 
@@ -100,10 +103,16 @@ function GamePlay (){
 
         printBoard();
     }
+//Initial Setup message
+    printBoard();
 
     return {
         playRound,
     }
 }
 
-const game = GamePlay();
+
+function start (){
+    const game = GamePlay();
+    game.playRound(0,0);
+}
