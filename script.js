@@ -15,7 +15,17 @@ function Gameboard (){
         }
 
     function setSymbol (row, column, playerSymbol){
-        board[row][column].addSymbol(playerSymbol)
+
+        if(board[row][column].getSymbol() === '_'){
+            board[row][column].addSymbol(playerSymbol)
+
+            return true;
+        }
+        else{
+            console.log('Invalid Move, Try Again!');
+            return false;
+        }
+
     }
 
     return {
@@ -28,7 +38,7 @@ function Gameboard (){
 
 
 function Cell (){
-    let symbol = 'N';
+    let symbol = '_';
 
     function addSymbol (playerSymbol) {
 
@@ -98,14 +108,17 @@ function GamePlay (){
     const playRound = function (row, coulmn){
         //Do 3 things, 1)change the state of the cell board[row][coulmn], 2)change the playerTurn, 3)print the updated board
 
-        boardObj.setSymbol(row, coulmn, activePlayer.symbol);
+        let moveSuccessfull = boardObj.setSymbol(row, coulmn, activePlayer.symbol);
         
-        
-        setActivePlayer();
+        if(moveSuccessfull){
 
-        printBoard();
+            setActivePlayer();
+            printBoard();
+        }
+
     }
-//Initial Setup message
+
+    //Initial Setup message
     printBoard();
 
     return {
