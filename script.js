@@ -14,20 +14,25 @@ function Gameboard (){
             
         }
 
+    function setSymbol (row, column, playerSymbol){
+        board[row][column].addSymbol(playerSymbol)
+    }
+
     return {
-
         board,
-
-
+        setSymbol
     }
 
 }
 
+
+
 function Cell (){
     let symbol = 'N';
 
-    function addSymbol () {
+    function addSymbol (playerSymbol) {
         //We will need the status of the activePlayer to implement this
+        symbol = playerSymbol;
     }
 
 
@@ -42,7 +47,7 @@ function Cell (){
 
 function GamePlay (){
 
-    board = Gameboard();
+    boardObj = Gameboard();
 
     let activePlayer = Players[0];
 
@@ -61,19 +66,30 @@ function GamePlay (){
         }
     ];
 
+    function printBoard (){
+
+        for (let i = 0; i < 3; i++) {
+      
+            for (let j = 0; j < 3; j++) {
+                
+                boardObj.board[i][j].getSymbol();
+
+            }
+            
+        }
+
+    }
+
 
     const playRound = function (row, coulmn){
         //Do 3 things, 1)change the state of the cell board[row][coulmn], 2)change the playerTurn, 3)print the updated board
 
+        boardObj.setSymbol(row, coulmn, activePlayer.symbol);
         
-
-        function changeCellState () {
-            //We will need the Cell method to implement this
-            
-            
-        }
         
         setActivePlayer();
+
+        printBoard();
     }
 
     return {
