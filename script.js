@@ -69,13 +69,17 @@ function GamePlay (){
     function printBoard (){
 
         for (let i = 0; i < 3; i++) {
-      
+
+            let r = ' ';
+
             for (let j = 0; j < 3; j++) {
-                
-                boardObj.board[i][j].getSymbol();
+
+                r += boardObj.board[i][j].getSymbol() + ' ';
 
             }
-            
+
+            console.log(r);
+
         }
 
     }
