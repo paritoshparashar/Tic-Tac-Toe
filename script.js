@@ -65,13 +65,15 @@ function GamePlay (){
     const playRound = function (row, coulmn){
         //Do 3 things, 1)change the state of the cell board[row][coulmn], 2)change the playerTurn, 3)print the updated board
 
-        setActivePlayer();
+        
 
         function changeCellState () {
             //We will need the Cell method to implement this
             
             
         }
+        
+        setActivePlayer();
     }
 
     return {
