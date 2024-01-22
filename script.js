@@ -31,14 +31,19 @@ function Cell (){
     let symbol = 'N';
 
     function addSymbol (playerSymbol) {
-        //We will need the status of the activePlayer to implement this
+
         symbol = playerSymbol;
     }
 
+    function getSymbol (){
+
+        return symbol;
+    }
 
 
     return {
         addSymbol,
+        getSymbol,
     }
 
     
