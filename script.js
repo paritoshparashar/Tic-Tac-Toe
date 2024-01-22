@@ -33,6 +33,15 @@ function GamePlay (){
             symbol : 'Y'
         }
     ];
+
+    const playRound = function (row, coulmn){
+        //Do 3 things, 1)change the state of the cell board[row][coulmn], 2)change the playerTurn, 3)print the updated board
+        
+    }
+
+    return {
+        playRound,
+    }
 }
 
 const game = GamePlay();
