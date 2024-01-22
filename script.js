@@ -54,12 +54,6 @@ function GamePlay (){
 
     boardObj = Gameboard();
 
-    let activePlayer = Players[0];
-
-    function setActivePlayer () {
-        activePlayer = activePlayer === Players[0] ? Players[1] : Players[0];
-    }
-
     const Players = [
         {
             name : 'One',
@@ -67,9 +61,17 @@ function GamePlay (){
         },
         {
             name : 'Two',
-            symbol : 'Y'
+            symbol : 'O'
         }
     ];
+
+    let activePlayer = Players[0];
+
+    function setActivePlayer () {
+        activePlayer = activePlayer === Players[0] ? Players[1] : Players[0];
+    }
+
+    
 
     function printBoard (){
 
@@ -112,7 +114,5 @@ function GamePlay (){
 }
 
 
-function start (){
     const game = GamePlay();
-    game.playRound(0,0);
-}
+
