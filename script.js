@@ -10,7 +10,7 @@ function Gameboard (){
             
             for (let j = 0; j < 3; j++) {
                 
-                board[i].push('N');
+                board[i].push(Cell());
 
             }
             
@@ -19,3 +19,20 @@ function Gameboard (){
 
 }
 
+
+
+function GamePlay (){
+
+    const Players = [
+        {
+            name : 'One',
+            symbol : 'X'
+        },
+        {
+            name : 'Two',
+            symbol : 'Y'
+        }
+    ];
+}
+
+const game = GamePlay();
