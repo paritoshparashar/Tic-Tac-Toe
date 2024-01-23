@@ -91,42 +91,42 @@ function GamePlay (){
         }
 
         switch (true) {
-            case ((current[0][0].getSymbol() === current[0][1].getSymbol())=== current[0][2].getSymbol()):
+            case ((current[0][0].getSymbol() === current[0][1].getSymbol()) && (current[0][2].getSymbol() === current[0][0].getSymbol()) && (current[0][0].getSymbol() !== '_')):
                 winStatus.WIN = true;
                 winStatus.WINSYMBOL = current[0][0].getSymbol();
                 break;
 
-            case ((current[1][0].getSymbol() === current[1][1].getSymbol())=== current[1][2].getSymbol()):
+            case ((current[1][0].getSymbol() === current[1][1].getSymbol()) && (current[1][0].getSymbol()=== current[1][2].getSymbol()) && (current[1][0].getSymbol() !== '_')):
                 winStatus.WIN = true;
                 winStatus.WINSYMBOL = current[1][0].getSymbol();
                 break;
 
-            case ((current[2][0].getSymbol() === current[2][1].getSymbol())=== (current[2][2].getSymbol() === current[2][0].getSymbol())):
+            case ((current[2][0].getSymbol() === current[2][1].getSymbol()) && (current[2][2].getSymbol() === current[2][0].getSymbol()) && (current[2][0].getSymbol() !== '_')):
                 winStatus.WIN = true;
                 winStatus.WINSYMBOL = current[2][0].getSymbol();
                 break;
 
-            case ((current[0][0].getSymbol() === current[1][0].getSymbol())=== (current[2][0].getSymbol() === current[0][0].getSymbol())):
+            case ((current[0][0].getSymbol() === current[1][0].getSymbol()) && (current[2][0].getSymbol() === current[0][0].getSymbol()) && (current[0][0].getSymbol() !== '_')):
                 winStatus.WIN = true;
                 winStatus.WINSYMBOL = current[0][0].getSymbol();
                 break;
 
-            case ((current[0][1].getSymbol() === current[1][1].getSymbol())=== (current[2][1].getSymbol() === current[0][1].getSymbol())):
+            case ((current[0][1].getSymbol() === current[1][1].getSymbol()) && (current[2][1].getSymbol() === current[0][1].getSymbol()) && (current[0][1].getSymbol() !== '_')):
                 winStatus.WIN = true;
                 winStatus.WINSYMBOL = current[0][1].getSymbol();
                 break;
 
-            case ((current[0][2].getSymbol() === current[1][2].getSymbol())=== (current[2][2].getSymbol() === current[0][2].getSymbol())):
+            case ((current[0][2].getSymbol() === current[1][2].getSymbol()) && (current[2][2].getSymbol() === current[0][2].getSymbol()) && (current[0][2].getSymbol() !== '_')):
                 winStatus.WIN = true;
                 winStatus.WINSYMBOL = current[0][2].getSymbol();
                 break;
 
-            case ((current[0][0].getSymbol() === current[1][1].getSymbol())=== (current[2][2].getSymbol() === current[0][0].getSymbol())):
+            case ((current[0][0].getSymbol() === current[1][1].getSymbol()) && (current[2][2].getSymbol() === current[0][0].getSymbol()) && (current[0][0].getSymbol() !== '_')):
                 winStatus.WIN = true;
                 winStatus.WINSYMBOL = current[0][0].getSymbol();
                 break;
 
-            case ((current[2][0].getSymbol() === current[1][1].getSymbol())=== (current[0][2].getSymbol() === current[1][1].getSymbol())):
+            case ((current[2][0].getSymbol() === current[1][1].getSymbol()) && (current[0][2].getSymbol() === current[0][2].getSymbol()) && (current[2][0].getSymbol() !== '_')):
                 winStatus.WIN = true;
                 winStatus.WINSYMBOL = current[2][0].getSymbol();
                 break;
