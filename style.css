@@ -1,7 +1,14 @@
 body {
     height: 100vh;
+    
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .board {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
