@@ -198,12 +198,40 @@ function GamePlay (){
     }
 }
 
-function start (){
-        const game = GamePlay();
-        game.playRound(0,0);
-        game.playRound(0,1);
-        game.playRound(1,0);
-        game.playRound(2,2);
-        game.playRound(2,0);
+// function start (){
+//         const game = GamePlay();
+//         game.playRound(0,0);
+//         game.playRound(0,1);
+//         game.playRound(1,0);
+//         game.playRound(2,2);
+//         game.playRound(2,0);
+// }
+
+
+function ScreenController () {
+
+    function updateScreen(){
+
+
+    }
+
+    //Initial board Setup
+    updateScreen ();
+
 }
 
+
+const playerTurnDiv = document.querySelector('.player-turn');
+const boardDiv = document.querySelector('.board');
+
+for (let i = 0; i < 3; i++) {
+    
+    for (let j = 0; j < 3; j++) {
+        
+        const cellBtn = document.createElement('button');
+        cellBtn.id = '' + i + j;
+        cellBtn.classList.add('cell');
+        boardDiv.appendChild(cellBtn);
+    }
+}
+ScreenController ();
