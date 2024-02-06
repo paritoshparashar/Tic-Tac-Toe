@@ -140,53 +140,54 @@ function GamePlay (){
     }
     
 
-    function printBoard (status){
+    function printBoard (row, column){
 
-        for (let i = 0; i < 3; i++) {
+        // for (let i = 0; i < 3; i++) {
 
-            let r = ' ';
+        //     let r = ' ';
 
-            for (let j = 0; j < 3; j++) {
+        //     for (let j = 0; j < 3; j++) {
 
-                r += boardObj.board[i][j].getSymbol() + ' ';
+        //         r += boardObj.board[i][j].getSymbol() + ' ';
 
-            }
+        //     }
 
-            console.log(r);
+        //     console.log(r);
 
-        }
+        // }
 
-        if (status.WIN) {
+        // if (status.WIN) {
             
-            console.log(`${status.WINSYMBOL} wins!`);
-        }
+        //     console.log(`${status.WINSYMBOL} wins!`);
+        // }
 
-        else if (status.TIE){
-            console.log('It\'s a tie!')
-        }
+        // else if (status.TIE){
+        //     console.log('It\'s a tie!')
+        // }
 
-        else{
-            console.log(`Player ${activePlayer.name}'s Turn...`)
-        }
+        // else{
+        //     console.log(`Player ${activePlayer.name}'s Turn...`)
+        // }
 
-
+        return boardObj.board[row][column].getSymbol();
     }
 
 
-    const playRound = function (row, coulmn){
+    const playRound = function (row, column){
         //Do 3 things, 1)change the state of the cell board[row][coulmn], 2)change the playerTurn, 3)print the updated board
+        let status;
 
-        let moveSuccessfull = boardObj.setSymbol(row, coulmn, activePlayer.symbol);
+        let moveSuccessfull = boardObj.setSymbol(row, column, activePlayer.symbol);
         
         if(moveSuccessfull){
 
             setActivePlayer();
-            let status = checkWin();
-            printBoard(status);
-            
-
+            status = checkWin();
+            let text =  printBoard(row, column);
+            return { moveSuccessfull , text};
         }
 
+        else return {moveSuccessfull } ;
     }
 
     //Initial Setup message
@@ -198,25 +199,47 @@ function GamePlay (){
     }
 }
 
-// function start (){
-//         const game = GamePlay();
-//         game.playRound(0,0);
-//         game.playRound(0,1);
-//         game.playRound(1,0);
-//         game.playRound(2,2);
-//         game.playRound(2,0);
-// }
-
 
 function ScreenController () {
 
-    function updateScreen(){
+    const game = GamePlay();
 
+    
+    //Populate boardDiv
+    for (let i = 0; i < 3; i++) {
+    
+        for (let j = 0; j < 3; j++) {
+            
+            const cellBtn = document.createElement('button');
+            cellBtn.id = '' + i + j;
+            cellBtn.classList.add('cell');
+            cellBtn.addEventListener('click', handleBoardClick)
+            boardDiv.appendChild(cellBtn);
+        }
+    }
+
+
+    function updateScreen(cell, content){
+
+        cell.textContent = content;
+        
+        
+    }
+
+    function handleBoardClick (event) {
+
+        let clickedBtn = event.target;
+        let content = game.playRound(parseInt(clickedBtn.id[0]) , parseInt(clickedBtn.id[1])) //Extract row and column form id and pass as arg
+
+        if (content.moveSuccessfull){
+            updateScreen(clickedBtn, content.text);
+        }
+        
+        
 
     }
 
-    //Initial board Setup
-    updateScreen ();
+
 
 }
 
@@ -224,14 +247,4 @@ function ScreenController () {
 const playerTurnDiv = document.querySelector('.player-turn');
 const boardDiv = document.querySelector('.board');
 
-for (let i = 0; i < 3; i++) {
-    
-    for (let j = 0; j < 3; j++) {
-        
-        const cellBtn = document.createElement('button');
-        cellBtn.id = '' + i + j;
-        cellBtn.classList.add('cell');
-        boardDiv.appendChild(cellBtn);
-    }
-}
 ScreenController ();

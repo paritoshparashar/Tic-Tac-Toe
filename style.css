@@ -22,5 +22,6 @@ body {
 .cell {
     height: 100px;
     width: 100px;
+    font-size: larger;
 }
 
