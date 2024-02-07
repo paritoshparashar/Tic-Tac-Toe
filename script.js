@@ -81,6 +81,10 @@ function GamePlay (){
         activePlayer = activePlayer === Players[0] ? Players[1] : Players[0];
     }
 
+    function getActivePlayer (){
+        return activePlayer;
+    }
+
     function checkWin(){
 
         let current = boardObj.board;
@@ -184,6 +188,8 @@ function GamePlay (){
 
     return {
         playRound,
+        getActivePlayer,
+
     }
 }
 
@@ -226,7 +232,7 @@ function ScreenController () {
         }
 
         else{
-            //winStatusDiv.textContent = `Player ${activePlayer.name}'s Turn...`;
+            winStatusDiv.textContent = `Player ${game.getActivePlayer().name}'s Turn...`;
         }
         
     }
