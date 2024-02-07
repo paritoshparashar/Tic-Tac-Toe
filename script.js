@@ -255,8 +255,6 @@ function ScreenController () {
 }
 
 
-
-const playerTurnDiv = document.querySelector('.player-turn');
 const boardDiv = document.querySelector('.board');
 const winStatusDiv = document.querySelector('.winner');
 
