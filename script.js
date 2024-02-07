@@ -156,18 +156,6 @@ function GamePlay (){
 
         // }
 
-        // if (status.WIN) {
-            
-        //     console.log(`${status.WINSYMBOL} wins!`);
-        // }
-
-        // else if (status.TIE){
-        //     console.log('It\'s a tie!')
-        // }
-
-        // else{
-        //     console.log(`Player ${activePlayer.name}'s Turn...`)
-        // }
 
         return boardObj.board[row][column].getSymbol();
     }
@@ -183,8 +171,8 @@ function GamePlay (){
 
             setActivePlayer();
             status = checkWin();
-            let text =  printBoard(row, column);
-            return { moveSuccessfull , text};
+            let move =  printBoard(row, column);
+            return { moveSuccessfull , move , status};
         }
 
         else return {moveSuccessfull } ;
@@ -218,11 +206,28 @@ function ScreenController () {
         }
     }
 
+    function resetGameBoard (){
 
-    function updateScreen(cell, content){
+    }
 
-        cell.textContent = content;
-        
+
+    function updateScreen(cell, move, status){
+
+        cell.textContent = move;
+        if (status.WIN) {
+             
+            winStatusDiv.textContent = `${status.WINSYMBOL} wins!`;
+            resetGameBoard();
+        }
+
+        else if (status.TIE){
+            winStatusDiv.textContent = 'It\'s a tie!';
+            resetGameBoard();
+        }
+
+        else{
+            //winStatusDiv.textContent = `Player ${activePlayer.name}'s Turn...`;
+        }
         
     }
 
@@ -232,9 +237,9 @@ function ScreenController () {
         let content = game.playRound(parseInt(clickedBtn.id[0]) , parseInt(clickedBtn.id[1])) //Extract row and column form id and pass as arg
 
         if (content.moveSuccessfull){
-            updateScreen(clickedBtn, content.text);
+            updateScreen(clickedBtn, content.move , content.status);
         }
-        
+
         
 
     }
@@ -244,7 +249,9 @@ function ScreenController () {
 }
 
 
+
 const playerTurnDiv = document.querySelector('.player-turn');
 const boardDiv = document.querySelector('.board');
+const winStatusDiv = document.querySelector('.winner');
 
 ScreenController ();
