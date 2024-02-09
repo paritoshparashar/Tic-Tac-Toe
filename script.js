@@ -146,19 +146,21 @@ function GamePlay (){
 
     function printBoard (row, column){
 
-        // for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 3; i++) {
 
-        //     let r = ' ';
+            let r = ' ';
 
-        //     for (let j = 0; j < 3; j++) {
+            for (let j = 0; j < 3; j++) {
 
-        //         r += boardObj.board[i][j].getSymbol() + ' ';
+                r += boardObj.board[i][j].getSymbol() + ' ';
 
-        //     }
+            }
 
-        //     console.log(r);
+            console.log(r);
 
-        // }
+        }
+
+        console.log('nextMove');
 
 
         return boardObj.board[row][column].getSymbol();
@@ -225,6 +227,7 @@ function ScreenController () {
             for (var i = 0; i < cellsArray.length; i++) {
             cellsArray[i].textContent = '';
             toogleButtons(cellsArray, true);
+            winStatusDiv.textContent = '';
         }
         }, 2000); 
 
