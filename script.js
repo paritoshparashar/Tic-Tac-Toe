@@ -196,7 +196,7 @@ function GamePlay (){
 
 function ScreenController () {
 
-    const game = GamePlay();
+    let game = GamePlay();
 
     
     //Populate boardDiv
@@ -214,6 +214,16 @@ function ScreenController () {
 
     function resetGameBoard (){
 
+        game = GamePlay();
+
+        let cellsArray = boardDiv.getElementsByClassName('cell');
+
+        // Set the text content of each button to an empty string
+        setTimeout(() => {
+            for (var i = 0; i < cellsArray.length; i++) {
+            cellsArray[i].textContent = '';
+        }
+        }, 2000); 
     }
 
 
