@@ -218,13 +218,25 @@ function ScreenController () {
 
         let cellsArray = boardDiv.getElementsByClassName('cell');
 
+        toogleButtons(cellsArray, false);
+
         // Set the text content of each button to an empty string
         setTimeout(() => {
             for (var i = 0; i < cellsArray.length; i++) {
             cellsArray[i].textContent = '';
+            toogleButtons(cellsArray, true);
         }
         }, 2000); 
+
+
+        function toogleButtons(buttons, enable) {
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].disabled = !enable;
+            }
+        }
     }
+
+
 
 
     function updateScreen(cell, move, status){
