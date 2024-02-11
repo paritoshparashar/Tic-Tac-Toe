@@ -1,6 +1,8 @@
 function Gameboard (){
 
+    
     let board = [];
+    let moves = 0;
 
         for (let i = 0; i < 3; i++) {
 
@@ -30,7 +32,8 @@ function Gameboard (){
 
     return {
         board,
-        setSymbol
+        setSymbol,
+        moves
     }
 
 }
@@ -85,7 +88,7 @@ function GamePlay (){
         return activePlayer;
     }
 
-    function checkWin(){
+    function checkWin(moves){
 
         let current = boardObj.board;
         let winStatus = {
@@ -130,9 +133,13 @@ function GamePlay (){
                 winStatus.WINSYMBOL = current[0][0].getSymbol();
                 break;
 
-            case ((current[2][0].getSymbol() === current[1][1].getSymbol()) && (current[0][2].getSymbol() === current[0][2].getSymbol()) && (current[2][0].getSymbol() !== '_')):
+            case ((current[2][0].getSymbol() === current[1][1].getSymbol()) && (current[0][2].getSymbol() === current[1][1].getSymbol()) && (current[2][0].getSymbol() !== '_')):
                 winStatus.WIN = true;
                 winStatus.WINSYMBOL = current[2][0].getSymbol();
+                break;
+
+            case (moves == 9):
+                winStatus.TIE = true;
                 break;
 
             default:
@@ -169,14 +176,15 @@ function GamePlay (){
 
     const playRound = function (row, column){
         //Do 3 things, 1)change the state of the cell board[row][coulmn], 2)change the playerTurn, 3)print the updated board
-        let status;
 
+        let status;
+        boardObj.moves += 1;
         let moveSuccessfull = boardObj.setSymbol(row, column, activePlayer.symbol);
         
         if(moveSuccessfull){
 
             setActivePlayer();
-            status = checkWin();
+            status = checkWin(boardObj.moves);
             let move =  printBoard(row, column);
             return { moveSuccessfull , move , status};
         }
