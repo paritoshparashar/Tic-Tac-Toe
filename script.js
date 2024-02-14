@@ -70,11 +70,13 @@ function GamePlay (){
     const Players = [
         {
             name : 'One',
-            symbol : 'X'
+            symbol : 'X',
+            color : 'red'
         },
         {
             name : 'Two',
-            symbol : 'O'
+            symbol : 'O',
+            color : 'green'
         }
     ];
 
@@ -199,16 +201,16 @@ function GamePlay (){
     return {
         playRound,
         getActivePlayer,
-
     }
 }
 
+// ----------------------------DOM code below-----------------------------------------------------
 
 function ScreenController () {
 
     let game = GamePlay();
 
-    
+    let clickedBtn = null;
     //Populate boardDiv
     for (let i = 0; i < 3; i++) {
     
@@ -223,7 +225,7 @@ function ScreenController () {
     }
 
     function resetGameBoard (){
-
+        
         game = GamePlay();
 
         let cellsArray = boardDiv.getElementsByClassName('cell');
@@ -236,6 +238,7 @@ function ScreenController () {
             cellsArray[i].textContent = '';
             toogleButtons(cellsArray, true);
             winStatusDiv.textContent = '';
+            clickedBtn.style.border = ` 2px rgb(137, 137, 137) solid`;
         }
         }, 2000); 
 
@@ -250,9 +253,12 @@ function ScreenController () {
 
 
 
-    function updateScreen(cell, move, status){
+    function updateScreen( move, status){
 
-        cell.textContent = move;
+        clickedBtn.textContent = move;
+        clickedBtn.style.color = `${game.getActivePlayer().color}`;
+        clickedBtn.style.border = `2px ${game.getActivePlayer().color} solid`;
+        
         if (status.WIN) {
              
             winStatusDiv.textContent = `${status.WINSYMBOL} wins!`;
@@ -272,11 +278,16 @@ function ScreenController () {
 
     function handleBoardClick (event) {
 
-        let clickedBtn = event.target;
+        if (clickedBtn) {
+            clickedBtn.style.border = ` 2px rgb(137, 137, 137) solid`;
+        }
+
+        clickedBtn = event.target;
+
         let content = game.playRound(parseInt(clickedBtn.id[0]) , parseInt(clickedBtn.id[1])) //Extract row and column form id and pass as arg
 
         if (content.moveSuccessfull){
-            updateScreen(clickedBtn, content.move , content.status);
+            updateScreen( content.move , content.status);
         }
 
         
