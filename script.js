@@ -70,11 +70,13 @@ function GamePlay (){
     const Players = [
         {
             name : 'One',
-            symbol : 'X'
+            symbol : 'X',
+            color : 'red'
         },
         {
             name : 'Two',
-            symbol : 'O'
+            symbol : 'O',
+            color : 'green'
         }
     ];
 
@@ -199,10 +201,10 @@ function GamePlay (){
     return {
         playRound,
         getActivePlayer,
-
     }
 }
 
+// ----------------------------DOM code below-----------------------------------------------------
 
 function ScreenController () {
 
@@ -253,6 +255,7 @@ function ScreenController () {
     function updateScreen(cell, move, status){
 
         cell.textContent = move;
+        cell.style.color = `${game.getActivePlayer().color}`;
         if (status.WIN) {
              
             winStatusDiv.textContent = `${status.WINSYMBOL} wins!`;
